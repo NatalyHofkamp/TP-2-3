@@ -16,8 +16,8 @@ class City
     ~City(){
       cout<<"~City()"<<endl;
     }
-    double calcularDistancia(City* ciudad2);
-    void imprimirCiudad();
+    double DistCalc(City* ciudad2);
+    void print();
 };
 
 #endif 

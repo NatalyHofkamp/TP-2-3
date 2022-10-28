@@ -1,22 +1,28 @@
-#include "Ruta.h"
-void Ruta::vaciar(){
-    for(size_t i=0;i<(Ciudades.size());i++){
-        delete Ciudades[i];
+#include "Rute.h"
+
+void Rute::empty(){
+    for(size_t i=0;i<(Cities.size());i++){
+        delete Cities[i];
     }
 }
 
-void Ruta::cargarCiudad(double x,double y)
+void Rute::AddCity(double x,double y)
 {
-    Ciudades.emplace_back(new City(x,y));
+    Cities.emplace_back(new City(x,y));
 }
 
-double Ruta::DistanciaTotal()
+double Rute::TotalDist()
 {
     double total=0;
-    for(size_t i=0;i<(Ciudades.size()-1);i++){
-        total+= Ciudades[i]->calcularDistancia(Ciudades[i+1]);
+    for(size_t i=0;i<(Cities.size()-1);i++){
+        total+= Cities[i]->DistCalc(Cities[i+1]);
     }
-    total+= Ciudades[0]->calcularDistancia(Ciudades[Ciudades.size()-1]);
+    total+= Cities[0]->DistCalc(Cities[Cities.size()-1]);
     
     return total;
+}
+
+void Rute:: CalcFitness(void)
+{
+    this->Fitness = 1/this->TotalDist();
 }
