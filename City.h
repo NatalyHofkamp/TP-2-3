@@ -17,7 +17,9 @@ class City
       cout<<"~City()"<<endl;
     }
     double DistCalc(City* ciudad2);
-    void print();
+    void Print() const;
+    double GetX() const;
+    double GetY() const;
 };
 
 #endif 
