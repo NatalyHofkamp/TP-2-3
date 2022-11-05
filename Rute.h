@@ -3,6 +3,8 @@
 #include "City.h"
 #ifndef RUTA_H
 using namespace std;
+
+
 class Rute
 {
   private:
@@ -16,8 +18,8 @@ class Rute
   void AddCity(double x, double y);
   void CalcFitness();
   double TotalDist();
-  void empty();
-  
+  void Empty();
+  void PrintCities();
   
 };
 
