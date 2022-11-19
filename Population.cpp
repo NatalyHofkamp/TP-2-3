@@ -1,17 +1,7 @@
 #include "Population.h"
+#include <fstream>
 
 
-<<<<<<< Updated upstream
-std::vector<City *> read_csv(std::string name_csv);
-
-Population::Population(int size) {
-    this->size = size;
-}
-
-
-void Population::CreateRandPop(std::vector<City *> all_cities) {
-    Rute *rute;
-=======
 Population::~Population() 
 {
     /*destructor de poblaciones*/
@@ -27,30 +17,17 @@ void Population::CreateRandPop(std::vector<City *> allCities)
 {
     /*  crea nuevas rutas y las mete en una población*/
     Route *route;
->>>>>>> Stashed changes
     std::vector<City *> aux;
-    int counter = 0;
     int rand_num;
 
     for (size_t i = 0; i < size; i++) {
-        aux = all_cities;
-        for (size_t r = 0; r < all_cities.size(); r++) {
-            rand_num = rand()%(r-counter);
-            counter++;
-            rute = new Rute();
-            rute->AddCity(all_cities[rand_num]->GetX(), all_cities[rand_num]->GetY());
+        route = new Route();
+        aux = allCities;
+        for (size_t r = 0; r < allCities.size(); r++) {
+            rand_num = rand()%(allCities.size()-r);
+            route->AddCity(aux[rand_num]);
             aux.erase(aux.begin() + rand_num);
         }
-<<<<<<< Updated upstream
-        roads.emplace_back(rute);
-    }
-}
-
-/* Arreglo de rutas en vez de vectr:
-Ruta *rute = new Ruta[all_cities.size()];
-rute[i] = Ruta();
-*/
-=======
         routes.emplace_back(route);
         
     }
@@ -377,4 +354,3 @@ void Population::WriterProm()
     file.close();
 }
 */
->>>>>>> Stashed changes

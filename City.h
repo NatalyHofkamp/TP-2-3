@@ -1,7 +1,5 @@
+#pragma once
 #include <iostream>
-#ifndef CITY_H
-
-using namespace std;
 
 class City
 {
@@ -14,11 +12,6 @@ class City
         this->x=x;
         this->y=y;
     }
-<<<<<<< Updated upstream
-    ~City(){
-      cout<<"~City()"<<endl;
-    }
-=======
 
     City(City &other) 
     {
@@ -32,11 +25,8 @@ class City
     }
 
     bool operator==(City &other);
->>>>>>> Stashed changes
     double DistCalc(City* ciudad2);
     void Print() const;
     double GetX() const;
     double GetY() const;
 };
-
-#endif 

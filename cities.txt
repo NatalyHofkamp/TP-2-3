@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 # NAME : att48
 # COMMENT : 48 capitals of the US (Padberg/Rinaldi)
 # TYPE : TSP
@@ -54,4 +52,3 @@
 46 6807 2993
 47 5185 3258
 48 3023 1942
->>>>>>> Stashed changes

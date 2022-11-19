@@ -1,23 +1,8 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-<<<<<<< Updated upstream
-#include "City.h"
-#include "Rute.h"
-
-
-class Population {
-        std::vector<Rute *> roads;
-        int size;
-    public:
-        Population(int size);
-        void CreateRandPop(std::vector<City *> all_cities);
-        void Selection(); 
-        void Reproduction();
-        void Mutation();
-        void Elitism();
-};
-=======
 #include <tuple>
 #include <stdlib.h>
 #include <time.h>
@@ -66,4 +51,3 @@ class Population
     double PromTotalDist();
     int GetGeneration();
 };
->>>>>>> Stashed changes
