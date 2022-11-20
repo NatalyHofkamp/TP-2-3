@@ -4,18 +4,17 @@
 
 Population::~Population() 
 {
-    /*destructor de poblaciones*/
     for(size_t i=0;i<size;i++){
         delete routes[0];
         routes.erase(routes.begin());       
     }
-    std::cout<<"~Population()"<<std::endl;
+    std::cout<<"~Population()"<<std::endl; //PRINT
 }
 
 
-void Population::CreateRandPop(std::vector<City *> allCities) 
+void Population::CreateRandPop(std::vector<City *> &allCities) 
 {
-    /*  crea nuevas rutas y las mete en una población*/
+    /*create random routes for the inicial random population*/
     Route *route;
     std::vector<City *> aux;
     int rand_num;
@@ -37,20 +36,21 @@ void Population::CreateRandPop(std::vector<City *> allCities)
 
 void Population::SetRoutesRanked()
 {
-    /* crea el ranking de rutas con su índice y valor de fitness*/
+    /*create ranking of routes with their index and total distance*/
     int counter = 0;
     routesRanked.clear();
     for(auto r: routes){
-        /*num de la generacion, distancia total de cada ruta*/
         routesRanked.emplace_back(std::make_tuple(counter, (r->TotalDist())));
         counter++;
     }
+
+    this->SortRoutes();
 }
 
 
 void Population::SortRoutes()
 {
-    /*ordena las rutas por su fitness [menor a mayor distancia]*/
+    /*sort the ranked routes by distnace, from shorest to largest*/
     std::tuple<int, double> aux;
 
     for (size_t r = 0; r < routesRanked.size(); r++) {
@@ -67,20 +67,22 @@ void Population::SortRoutes()
 
 std::vector<std::tuple<int, double>> Population::Selection()
 { 
-    /*seleccionar los padres, eligiendo el primer cuarto de la poblacion [menor distancia recorrida]*/
+    /*selection of the best fourth of the population as parents for reproduction*/
     std::vector<std::tuple<int, double>> selected;
     size_t i = 0;
     while (i < routesRanked.size()/4) {
         selected.emplace_back(routesRanked[i]);
         i++;
     }
+
+    selected = this->CreateParents(selected);
     return selected;
 }
 
 
-std::vector<std::tuple<int, double>> Population::CreateParents(std::vector<std::tuple<int, double>> parents)
+std::vector<std::tuple<int, double>> Population::CreateParents(std::vector<std::tuple<int, double>> &parents)
 {
-    /*mejora lista de seleccion de padres, repitiendo mas veces a los mejores*/
+    /*improvement of the selected parents, by increasing the chances of those with the shortest ditance*/
     std::vector<std::tuple<int, double>> newParents;
     double total = 0;
     for (size_t i=0; i < parents.size(); i++) {
@@ -96,7 +98,7 @@ std::vector<std::tuple<int, double>> Population::CreateParents(std::vector<std::
 }
 
 
-void Population::Reproduction(std::vector<std::tuple<int, double>> parents, int routeSize) 
+void Population::Reproduction(std::vector<std::tuple<int, double>> &parents, int routeSize) 
 {
     this->counterGenerations += 1;
     Route *child; 
@@ -117,7 +119,7 @@ void Population::Reproduction(std::vector<std::tuple<int, double>> parents, int 
         } while (randParent2 == randParent1);
         child = new Route();
 
-        if (std::get<1>(parents[randParent1]) < std::get<1>(parents[randParent2])) { //SI CAMBIA FITNESS/TOTAL O DIST ESTO CAMBIA
+        if (std::get<1>(parents[randParent1]) < std::get<1>(parents[randParent2])) {
             child->AddCity( routes[std::get<0>(parents[randParent1])]->GetCity(0) );
         } else {
             child->AddCity(routes[std::get<0>(parents[randParent2])]->GetCity(0) );
@@ -130,16 +132,14 @@ void Population::Reproduction(std::vector<std::tuple<int, double>> parents, int 
             aux[3] = routes[std::get<0>(parents[randParent2])]->GetCity((i-2)%this->size);
 
             for (auto elem: aux) {
-                if (!(child->HasCity(elem)) && (!check)) {
-                    best = elem;
-                    check = true;
-                    continue;
-                }
-
-                if (!(child->HasCity(elem)) && (check)) {
-                    if (elem->DistCalc(child->GetCity(i-1)) < best->DistCalc(child->GetCity(i-1))) { //SI CAMBIA FITNESS/TOTAL O DIST ESTO CAMBIA
+                if (!(child->HasCity(elem))) {
+                    if (!check) {
                         best = elem;
                         check = true;
+                        continue;
+                    } 
+                    if (elem->DistCalc(child->GetCity(i-1)) < best->DistCalc(child->GetCity(i-1))) {
+                        best = elem;
                     }
                 }
             }
@@ -164,7 +164,6 @@ void Population::Reproduction(std::vector<std::tuple<int, double>> parents, int 
         delete route;
     }
     this->routes = newGeneration;
-   
 }
 
 
@@ -209,18 +208,18 @@ void Population::SetLastBestRoute()
 }
 
 
-Route* Population::GetBestRouteEver()
-{
-    return this->bestRouteEver;
-}
-
-
 void Population::ChangeBestRouteEver()
 {
     if(std::get<1>(routesRanked[0]) < bestRouteEver->TotalDist()){
         delete bestRouteEver;
         bestRouteEver = new Route(*routes[std::get<0>(routesRanked[0])]);
     }
+}
+
+
+Route* Population::GetBestRouteEver()
+{
+    return this->bestRouteEver;
 }
 
 
@@ -238,13 +237,11 @@ double Population::GetWorstDist()
 
 double Population::PromTotalDist() 
 {
-    /*la suma de todos los fitness*/
     double total = 0;
     for(auto r: routes){
         total += r->TotalDist();
     }
     return total/this->size;
-
 }
 
 

@@ -26,7 +26,6 @@ class City
 
     bool operator==(City &other);
     double DistCalc(City* ciudad2);
-    void Print() const;
-    double GetX() const;
-    double GetY() const;
+    double GetX();
+    double GetY();
 };

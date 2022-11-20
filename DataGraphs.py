@@ -1,27 +1,44 @@
 import matplotlib.pyplot as plt
 
-def print_max(filename):
+
+def PrintMax(filename):
     x = []
     y = []
     for line in open(filename, 'r'):
         xi, yi = line.strip().split(",")
         x.append(int(xi))
         y.append(float(yi))
-    plt.title("Max fitness x gen")
+    plt.title("Shortest distance per generation")
     plt.xlabel('generation')
     plt.ylabel('distance')
     #plt.yticks(y)
     plt.plot(x, y)
     plt.show()
 
-def print_prom(filename):
+
+def PrintMin(filename):
     x = []
     y = []
     for line in open(filename, 'r'):
         xi, yi = line.strip().split(",")
         x.append(int(xi))
         y.append(float(yi))
-    plt.title("Prom fitness x gen")
+    plt.title("Largest distance per generation")
+    plt.xlabel('generation')
+    plt.ylabel('distance')
+    #plt.yticks(y)
+    plt.plot(x, y)
+    plt.show()
+
+
+def PrintProm(filename):
+    x = []
+    y = []
+    for line in open(filename, 'r'):
+        xi, yi = line.strip().split(",")
+        x.append(int(xi))
+        y.append(float(yi))
+    plt.title("Average distance per generation")
     plt.xlabel('generation')
     plt.ylabel('distance')
     plt.plot(x, y, marker = 'o', c = 'g')
@@ -29,14 +46,14 @@ def print_prom(filename):
     plt.show()
 
 
-def print_route(filename):
+def PrintRoute(filename):
     x = []
     y = []
     for line in open(filename, 'r'):
         xi, yi = line.strip().split(",")
         x.append(int(xi))
         y.append(float(yi))
-    plt.title("mapa de coordenadas")
+    plt.title("Map of coordinates")
     plt.xlabel('x')
     plt.ylabel('y')
     x.append(x[0])
@@ -44,7 +61,12 @@ def print_route(filename):
     plt.plot(x, y, marker = 'o', c = 'g')
     plt.show()
 
-print_max("RoutesDataMax.txt")
-print_prom("RoutesDataProm.txt")
-print_route("BestRouteGraph.txt")
 
+
+def main(): 
+    PrintMax("RoutesDataMax.txt")
+    PrintMin("RoutesDataMin.txt")
+    PrintProm("RoutesDataProm.txt")
+    PrintRoute("BestRouteGraph.txt")
+if __name__ == "__main__":
+    main()

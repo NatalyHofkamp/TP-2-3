@@ -55,6 +55,14 @@ double Route::TotalDist()
 }
 
 
+/*
+city:
+void City::Print() const
+{
+    std::cout<<"City -> ("<<this->x<<","<<this->y<<")"<<std::endl;
+}
+
+
 void Route::PrintCities() 
 {
     std::cout << "Total dist[best]: " << TotalDist() << std::endl;
@@ -63,8 +71,6 @@ void Route::PrintCities()
     }
 }
 
-
-/*
 void Route::Graph()
 {
     std::fstream file;

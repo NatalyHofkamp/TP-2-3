@@ -15,6 +15,7 @@ class Route
     {
       size = 0;
     }
+
     Route(Route &other)
     {
       this->cities = other.cities;
@@ -32,5 +33,4 @@ class Route
     City *GetCity(int position);
     void SwapCity(int i, int j);
     double TotalDist();
-    void PrintCities();
 };

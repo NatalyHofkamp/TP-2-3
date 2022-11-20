@@ -9,8 +9,6 @@
 #include <cmath>
 #include "Graph.h"
 #include "Route.h"
-#include "reader.h"
-#include "comands.h"
 
 
 class Population 
@@ -34,12 +32,12 @@ class Population
     }
 
     ~Population();
-    void CreateRandPop(std::vector<City *>);
+    void CreateRandPop(std::vector<City *> &);
     void SetRoutesRanked();
     void SortRoutes();
     std::vector<std::tuple<int, double>> Selection(); 
-    std::vector<std::tuple<int, double>> CreateParents(std::vector<std::tuple<int, double>>);
-    void Reproduction(std::vector<std::tuple<int, double>>, int);
+    std::vector<std::tuple<int, double>> CreateParents(std::vector<std::tuple<int, double>> &);
+    void Reproduction(std::vector<std::tuple<int, double>> &, int);
     void Mutation(float, int);
     bool CheckEvolution(size_t, double);
 

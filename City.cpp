@@ -13,19 +13,13 @@ double City::DistCalc(City* ciudad)
 }
 
 
-void City::Print() const
-{
-    std::cout<<"City -> ("<<this->x<<","<<this->y<<")"<<std::endl;
-}
-
-
-double City::GetX() const 
+double City::GetX()
 {
     return x;
 }
 
 
-double City::GetY() const 
+double City::GetY()
 {
     return y;
 }

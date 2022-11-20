@@ -30,6 +30,7 @@ void GraphProm::AddInfoFile(Population * pop) const
 
 void GraphBestRoute::AddInfoFile(Population * pop) const
 {
+    remove("BestRouteGraph.txt");
     std::fstream file;
     file.open(this->nameFile, std::fstream::in | std::fstream::out | std::fstream::app);
     Route * bestRoute = pop->GetBestRouteEver();

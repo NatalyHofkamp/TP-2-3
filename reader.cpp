@@ -1,4 +1,4 @@
-#include "reader.h"
+#include "Reader.h"
 
 std::vector<City *> reader::readCsv(std::string nameCsv)
  {
@@ -6,7 +6,7 @@ std::vector<City *> reader::readCsv(std::string nameCsv)
     std::ifstream archivo(nombreArchivo.c_str());
     std::string line;
     std::vector<City*> cities;
-    while (getline(archivo, line)) {/*recorre cada linea del texto*/
+    while (getline(archivo, line)) {
         std::vector<std::string> words;
         if (line[0]=='#'){
             continue;
@@ -14,7 +14,7 @@ std::vector<City *> reader::readCsv(std::string nameCsv)
         int len= line.size();
         std::string newWord;
         int counter=0;
-        for(const auto & letter:line){/*recorre cada letra por oración */
+        for(const auto & letter:line){
             if(letter!=',' && letter!='-' && letter!=' ' && counter<len-1){
                 newWord+=letter;
                 counter++;
@@ -24,7 +24,7 @@ std::vector<City *> reader::readCsv(std::string nameCsv)
                 if(counter== len){
                     newWord+=line[len-1];
                 }
-                words.emplace_back(newWord);/* cargamos las palabras por oración*/
+                words.emplace_back(newWord);
                 newWord="";
             }
         }
@@ -32,23 +32,3 @@ std::vector<City *> reader::readCsv(std::string nameCsv)
     }
     return cities;
 }
-
-  
-/*
-int main(int argc,char** argv)
-{
-    int counter;
-    if(argc!=4)
-        std::cout<<"No."<<std::endl;
-    else
-    {
-        double variation;// umbral de variacion
-        int genAmount;//cant de generaciones
-        genAmount= std::stoi(argv[2]);
-        variation= std::stod(argv[1]);
-        readCsv(argv[0]);
-
-    }
-    return 0;
-}
-*/
