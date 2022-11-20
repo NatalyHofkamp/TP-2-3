@@ -1,7 +1,5 @@
 #pragma once
-
 #include <iostream>
-
 #include "City.h"
 #include "Route.h"
 #include "Population.h"

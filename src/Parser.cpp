@@ -1,5 +1,5 @@
-#include "Parser.h"
-
+#include "../include/Parser.h"
+#include <cstring>
 #include <iostream>
 #include <string>
 #include <vector>

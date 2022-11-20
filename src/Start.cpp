@@ -1,4 +1,4 @@
-#include "Start.h"
+#include "../include/Start.h"
 
 
 void Generations(std::vector<City *> &allCities, int generations, double minChange, std::vector<Graph *> &graphs) 

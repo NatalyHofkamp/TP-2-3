@@ -22,10 +22,7 @@ class Route
       this->size = other.size;
     }
 
-    ~Route() 
-    {
-      //std::cout<<"~Route()"<<std::endl;
-    }
+    ~Route(){};
 
     int GetSize();
     void AddCity(City *);

@@ -20,9 +20,7 @@ class City
     }
 
     ~City()
-    {
-      std::cout<<"~City()"<<std::endl;
-    }
+    {}
 
     bool operator==(City &other);
     double DistCalc(City* ciudad2);

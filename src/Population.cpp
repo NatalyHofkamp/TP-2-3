@@ -1,14 +1,12 @@
-#include "Population.h"
+#include "../include/Population.h"
 #include <fstream>
 
 
 Population::~Population() 
 {
-    for(size_t i=0;i<size;i++){
-        delete routes[0];
-        routes.erase(routes.begin());       
-    }
-    std::cout<<"~Population()"<<std::endl; //PRINT
+    for(auto route:routes){
+        delete route;
+        }
 }
 
 

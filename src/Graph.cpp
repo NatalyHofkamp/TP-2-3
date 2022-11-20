@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "../include/Graph.h"
 
 
 void GraphMax::AddInfoFile(Population * pop) const
