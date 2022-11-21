@@ -28,7 +28,7 @@ class Population
     Population(int size) 
     {
       this->size = size;
-      this->counterGenerations = 1;
+      this->counterGenerations = 0;
       this->counterMinChange = 0;
     }
 
