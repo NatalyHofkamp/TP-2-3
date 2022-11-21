@@ -12,7 +12,6 @@ Population::~Population()
 
 void Population::CreateRandPop(std::vector<City *> &allCities) 
 {
-    /*create random routes for the inicial random population*/
     Route *route;
     std::vector<City *> aux;
     int rand_num;
@@ -34,7 +33,6 @@ void Population::CreateRandPop(std::vector<City *> &allCities)
 
 void Population::SetRoutesRanked()
 {
-    /*create ranking of routes with their index and total distance*/
     int counter = 0;
     routesRanked.clear();
     for(auto r: routes){
@@ -48,7 +46,6 @@ void Population::SetRoutesRanked()
 
 void Population::SortRoutes()
 {
-    /*sort the ranked routes by distance, from shorest to largest*/
     std::tuple<int, double> aux;
 
     for (size_t r = 0; r < routesRanked.size(); r++) {
@@ -65,7 +62,6 @@ void Population::SortRoutes()
 
 std::vector<std::tuple<int, double>> Population::Selection()
 { 
-    /*selection of the best fourth of the population as parents for reproduction*/
     std::vector<std::tuple<int, double>> selected;
     size_t i = 0;
     while (i < routesRanked.size()/4) {
@@ -80,7 +76,6 @@ std::vector<std::tuple<int, double>> Population::Selection()
 
 std::vector<std::tuple<int, double>> Population::CreateParents(std::vector<std::tuple<int, double>> &parents)
 {
-    /*improvement of the selected parents, by increasing the chances of those with the shortest ditance*/
     std::vector<std::tuple<int, double>> newParents;
     double total = 0;
     for (size_t i=0; i < parents.size(); i++) {
@@ -89,7 +84,11 @@ std::vector<std::tuple<int, double>> Population::CreateParents(std::vector<std::
 
     for(const auto& p: parents){
         for(size_t i = 0; i < (1/(std::get<1>(p)*total))*size; i++){
-            newParents.emplace_back(p);
+            if (newParents.size() < this->size) {
+                newParents.emplace_back(p);
+            } else {
+                break;
+            }
         }
     }
     return newParents;
@@ -102,7 +101,6 @@ void Population::Reproduction(std::vector<std::tuple<int, double>> &parents, int
     Route *child; 
     std::vector<Route *> newGeneration;
     newGeneration.emplace_back(routes[std::get<0>(routesRanked[0])]);
-    
     City *aux[4];
     City *best;
     bool check = false;
@@ -112,9 +110,7 @@ void Population::Reproduction(std::vector<std::tuple<int, double>> &parents, int
 
     for (size_t i=0; i < routes.size()-1; i++) {
         randParent1 = rand() % parents.size();
-        do {
-            randParent2 = rand() % parents.size(); 
-        } while (randParent2 == randParent1);
+        randParent2 = rand() % parents.size(); 
         child = new Route();
 
         if (std::get<1>(parents[randParent1]) < std::get<1>(parents[randParent2])) {
@@ -156,7 +152,7 @@ void Population::Reproduction(std::vector<std::tuple<int, double>> &parents, int
         }
         newGeneration.emplace_back(child);
     }
-    //aca habria que eliminar/delete a las rutas en rutes para liberar su espacio
+
     routes.erase(routes.begin() + std::get<0>(routesRanked[0]));
     for (auto route: routes) {
         delete route;

@@ -11,7 +11,6 @@ def PrintMax(filename):
     plt.title("Shortest distance per generation")
     plt.xlabel('generation')
     plt.ylabel('distance')
-    #plt.yticks(y)
     plt.plot(x, y)
     plt.show()
 
@@ -26,7 +25,6 @@ def PrintMin(filename):
     plt.title("Largest distance per generation")
     plt.xlabel('generation')
     plt.ylabel('distance')
-    #plt.yticks(y)
     plt.plot(x, y)
     plt.show()
 
@@ -65,8 +63,8 @@ def PrintRoute(filename):
 
 def main(): 
     PrintMax("RoutesDataMax.txt")
-    PrintMin("RoutesDataMin.txt")
-    PrintProm("RoutesDataProm.txt")
+    #PrintMin("RoutesDataMin.txt")
+    #PrintProm("RoutesDataProm.txt")
     PrintRoute("BestRouteGraph.txt")
 if __name__ == "__main__":
     main()
