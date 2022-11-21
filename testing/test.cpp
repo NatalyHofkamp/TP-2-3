@@ -53,7 +53,6 @@ void testRute() {
 }
 
 void testPopulation(Population* p) {
-    srand(1);
     std::vector<City*> allCities;
     allCities.emplace_back(new City(1,0));
     allCities.emplace_back(new City(0,0));
@@ -62,32 +61,24 @@ void testPopulation(Population* p) {
     Route* ruta= new Route();
     for( auto city:allCities){
         ruta->AddCity(city);
+       
     }
     std::vector<std::tuple<int, double>> selected;
-
-    /*probar que empezamos bien*/
     assert((p->size==300)==true);
     p->CreateRandPop(allCities); 
-    /*no se, probar que algo cambió*/
     assert((p->bestRouteEver==ruta)==false);
     p->SetRoutesRanked();
-    /*solo para probar que la distancia se calculabien */
     assert(std::get<1>(p->routesRanked[0])==12);
     p->SetLastBestRoute();
-    /*probar que empezó en 1?*/
     assert(p->counterGenerations==1);
     selected = p->Selection();
-    /*probar que la selección funciona- el mejor (menor distancia) aparece mas de una vez*/
     assert((std::get<1>(selected[0])==std::get<1>(selected[2]))==true);
     p->Reproduction(selected, allCities.size());
-    /*que aumentaron las generaciones*/ 
     assert(p->counterGenerations==2);
     p->Mutation(0.02, allCities.size());
     p->SetRoutesRanked();
-    /*probar que se ordenaron bien por distancias [menor a mayor]*/
     assert(((std::get<1>(p->routesRanked[0]))<(std::get<1>(p->routesRanked[150])))==true);
     p->ChangeBestRouteEver();
-    /*probar que la bestroutever se calcula bien*/
     assert(((p->bestRouteEver)->TotalDist()==(p->routes[std::get<0>(p->routesRanked[0])])->TotalDist())==true);
 
     std::cout<<"[POPULATION TESTING]=OK"<<std::endl;
@@ -102,4 +93,5 @@ int main(void){
     testCity();
     testRute();
     testPopulation(new Population(300));
+    srand(1);
 }
