@@ -33,18 +33,19 @@ class Population
     }
 
     ~Population();
-    void CreateRandPop(std::vector<City *> &);
+    void CreateRandPop(std::vector<City *> &allCities);
     void SetRoutesRanked();
     void SortRoutes();
     std::vector<std::tuple<int, double>> Selection(); 
-    std::vector<std::tuple<int, double>> CreateParents(std::vector<std::tuple<int, double>> &);
-    void Reproduction(std::vector<std::tuple<int, double>> &, int);
-    void Mutation(float, int);
-    bool CheckEvolution(size_t, double);
+    std::vector<std::tuple<int, double>> CreateParents(std::vector<std::tuple<int, double>> &parents);
+    void Reproduction(std::vector<std::tuple<int, double>> &parents, int routeSize);
+    void Mutation(float percentage, int sizeRoute);
+    bool CheckEvolution(size_t generations, double minChange);
 
     void SetLastBestRoute();
     void ChangeBestRouteEver();
     Route* GetBestRouteEver();
+    void PrintBestRouteEver();
     double GetBestDist();
     double GetWorstDist();
     double PromTotalDist();

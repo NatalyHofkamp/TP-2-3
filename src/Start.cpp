@@ -1,7 +1,7 @@
 #include "../include/Start.h"
 
 
-void Generations(std::vector<City *> &allCities, int generations, double minChange, std::vector<Graph *> &graphs) 
+void Generations(std::vector<City *> &allCities, int generations, double minChange, std::vector<Graph *> &graphs, bool best) 
 {
     Population *p = new Population(300);
     std::vector<std::tuple<int, double>> selected;
@@ -22,8 +22,9 @@ void Generations(std::vector<City *> &allCities, int generations, double minChan
             g->AddInfoFile(p);
         }    
     }
-    std::cout << p->GetGeneration() << std::endl; //PRINT
-    //bestRoute->AddInfoFile(p);
+    if (best) {
+        p->PrintBestRouteEver();
+    }
 
     for (auto g: graphs) {
         delete g;
@@ -59,14 +60,15 @@ void StartAlgorithm(int argc, char *argv[])
     double umbral;
     size_t gen;
     std::string out;
+    bool best = false;
     bool check;
 
-    check = Parser(argc, argv, file, umbral, gen, out);  
+    check = Parser(argc, argv, file, umbral, gen, out, best);  
     if (check) {
         std::vector<City *> allCities = reader::readCsv(file);
         std::vector<Graph *> graphs;
         SetGraphs(out, graphs);  
-        Generations(allCities, gen, umbral, graphs);
+        Generations(allCities, gen, umbral, graphs, best);
         
         for (auto each: allCities) {
             delete each;

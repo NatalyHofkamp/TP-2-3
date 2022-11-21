@@ -55,70 +55,9 @@ double Route::TotalDist()
 }
 
 
-
-/*
-city:
-void City::Print() const
-{
-    std::cout<<"City -> ("<<this->x<<","<<this->y<<")"<<std::endl;
-}
-
-
 void Route::PrintCities() 
 {
-    std::cout << "Total dist[best]: " << TotalDist() << std::endl;
     for (auto elem: cities) {
         elem->Print();
     }
 }
-
-void Route::Graph()
-{
-    std::fstream file;
-    file.open("routegraph.txt",std::fstream::in | std::fstream::out | std::fstream::app);
-    for(const auto& city:this->cities){
-        file<<city->GetX()<<","<<city->GetY()<<"\n";
-    }
-    file.close();
-}
-
-
-
-double Route::CalcFitness()
-{
-    this->fitness = 1/this->TotalDist();
-    return this->fitness;
-}
-
-
-int Route::GetSize() 
-{
-    return size;
-}
-
-
-void Route::AddCity(double x,double y)
-{
-    cities.emplace_back(new City(x,y));
-    size++;
-}
-
-void Route::Empty() 
-{
-    for(size_t i=0;i<size;i++){
-        delete cities[0];
-        cities.erase(cities.begin());       
-    }
-}
-
-std::vector<City *> GetRangeCities(int start, int end);
-std::vector<City *> Route::GetRangeCities(int start, int end) 
-{
-    std::vector<City *> rangeCities;
-    for (size_t i=start; i < end+1; i++) {
-        rangeCities.emplace_back(new City(*cities[i]));
-    }
-
-    return rangeCities;
-}
-*/

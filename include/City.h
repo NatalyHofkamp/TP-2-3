@@ -23,7 +23,8 @@ class City
     {}
 
     bool operator==(City &other);
-    double DistCalc(City* ciudad2);
+    double DistCalc(City* other);
     double GetX();
     double GetY();
+    void Print();
 };

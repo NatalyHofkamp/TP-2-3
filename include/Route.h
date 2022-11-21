@@ -25,9 +25,10 @@ class Route
     ~Route(){};
 
     int GetSize();
-    void AddCity(City *);
-    bool HasCity(City *);
+    void AddCity(City *newCity);
+    bool HasCity(City *city);
     City *GetCity(int position);
     void SwapCity(int i, int j);
     double TotalDist();
+    void PrintCities();
 };

@@ -217,6 +217,14 @@ Route* Population::GetBestRouteEver()
 }
 
 
+void Population::PrintBestRouteEver() {
+    std::cout << "<< Best route found >>" << std::endl;
+    std::cout << "After " << this->counterGenerations << " generations, the best distance achieved was: " << this->bestRouteEver->TotalDist() << std::endl;
+    std::cout << "The cities on this route were in the following order: " << std::endl;
+    this->bestRouteEver->PrintCities();
+}
+
+
 double Population::GetBestDist()
 {
     return std::get<1>(routesRanked[0]);

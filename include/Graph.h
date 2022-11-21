@@ -21,7 +21,7 @@ class Graph
     }
 
     virtual ~Graph() {};
-    virtual void AddInfoFile(Population *) const = 0;
+    virtual void AddInfoFile(Population *pop) const = 0;
 };
 
 
@@ -30,7 +30,7 @@ class GraphMax: public Graph
   public:
     GraphMax(std::string nameFile): Graph(nameFile) {}
 
-    void AddInfoFile(Population *) const override;
+    void AddInfoFile(Population *pop) const override;
 };
 
 
@@ -39,7 +39,7 @@ class GraphMin: public Graph
   public:
     GraphMin(std::string nameFile): Graph(nameFile) {}
 
-    void AddInfoFile(Population *) const override;
+    void AddInfoFile(Population *pop) const override;
 };
 
 
@@ -48,7 +48,7 @@ class GraphProm: public Graph
   public:
     GraphProm(std::string nameFile): Graph(nameFile) {}
 
-    void AddInfoFile(Population *) const override;
+    void AddInfoFile(Population *pop) const override;
 };
 
 
@@ -57,5 +57,5 @@ class GraphBestRoute: public Graph
   public:
     GraphBestRoute(std::string nameFile): Graph(nameFile) {}
 
-    void AddInfoFile(Population *) const override;
+    void AddInfoFile(Population *pop) const override;
 };

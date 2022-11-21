@@ -5,7 +5,7 @@
 #include <vector>
 
 
-bool Parser(int argc, char *argv[], std::string &file, double &umbral, size_t &gen, std::string &out)
+bool Parser(int argc, char *argv[], std::string &file, double &umbral, size_t &gen, std::string &out, bool &best)
 {
     int counterArgs = 0;
     char *pend = nullptr;
@@ -36,14 +36,16 @@ bool Parser(int argc, char *argv[], std::string &file, double &umbral, size_t &g
                 std::cout<<"|iterations and largest distance,     |"<<std::endl;
                 std::cout<<"|4->coordinates of cities in best     |"<<std::endl;
                 std::cout<<"|route found (more than one option    |"<<std::endl;
-                std::cout<<"|can be chosen, by inserting each     |"<<std::endl;
-                std::cout<<"|number separated by a coma, example  |"<<std::endl;
-                std::cout<<"|1,2,3,4 would indicate all were      |"<<std::endl;
-                std::cout<<"|requested)                           |"<<std::endl;
+                std::cout<<"|can be chosen, by inserting the      |"<<std::endl;
+                std::cout<<"|of each wanted, example 1234 would   |"<<std::endl;
+                std::cout<<"|indicate all were requested)         |"<<std::endl;
+                std::cout<<"|-b or --best --> if included, the    |"<<std::endl;
+                std::cout<<"|best route found will be shown       |"<<std::endl;
+                std::cout<<"|through the terminal                 |"<<std::endl;
                 std::cout<<"|                                     |"<<std::endl;
-                std::cout<<"|In case of not including an option or|"<<std::endl;
-                std::cout<<"|giving the wrong type of argument,   |"<<std::endl;
-                std::cout<<"|the program won't start.             |"<<std::endl;
+                std::cout<<"|In case of not including or giving   |"<<std::endl;
+                std::cout<<"|the wrong type of the first three    |"<<std::endl;
+                std::cout<<"|argument, the program won't start.   |"<<std::endl;
                 std::cout<<"---------------------------------------"<<std::endl << std::endl;
 
             return false;       
@@ -67,11 +69,13 @@ bool Parser(int argc, char *argv[], std::string &file, double &umbral, size_t &g
             }
         }
         else if((strcmp(argv[i], "-o") == 0) || (strcmp(argv[i], "--out") == 0)){
-            out = argv[i+1];
-            counterArgs++;  
+            out = argv[i+1]; 
+        }
+        else if((strcmp(argv[i], "-b") == 0) || (strcmp(argv[i], "--best") == 0)){
+            best = true;
         }
     }
-    if (counterArgs != 4) {
+    if (counterArgs != 3) {
         return false;
     }
     return true;
