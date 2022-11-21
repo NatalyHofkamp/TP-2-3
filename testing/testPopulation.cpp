@@ -19,7 +19,7 @@ void testPopulation(Population* p) {
     p->SetRoutesRanked();
     assert(std::get<1>(p->routesRanked[0])==12);
     p->SetLastBestRoute();
-    assert(p->counterGenerations==1);
+    assert(p->counterGenerations==0);
     selected = p->Selection();
     assert((std::get<1>(selected[0])==std::get<1>(selected[2]))==true);
     p->Reproduction(selected, allCities.size());

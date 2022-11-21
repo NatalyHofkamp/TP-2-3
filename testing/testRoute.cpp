@@ -19,7 +19,7 @@ void testRute(void) {
     assert(ruta->HasCity(new City(25,6)) == false);
     assert(ruta->HasCity(city4) == true);
 
-    std::cout<<"[ROUTE TESTING]= OK"<<std::endl;
+    std::cout<<"[ROUTE TESTING]=OK"<<std::endl;
     delete city1;
     delete city3;
     delete city4;
