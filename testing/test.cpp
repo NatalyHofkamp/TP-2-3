@@ -91,6 +91,11 @@ void testPopulation(Population* p) {
     assert(((p->bestRouteEver)->TotalDist()==(p->routes[std::get<0>(p->routesRanked[0])])->TotalDist())==true);
 
     std::cout<<"[POPULATION TESTING]=OK"<<std::endl;
+    delete ruta;
+    for(auto city: allCities){
+        delete city;
+    }
+    delete p;
 }
 
 int main(void){
