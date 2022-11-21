@@ -48,7 +48,7 @@ void Population::SetRoutesRanked()
 
 void Population::SortRoutes()
 {
-    /*sort the ranked routes by distnace, from shorest to largest*/
+    /*sort the ranked routes by distance, from shorest to largest*/
     std::tuple<int, double> aux;
 
     for (size_t r = 0; r < routesRanked.size(); r++) {
@@ -247,105 +247,3 @@ int Population::GetGeneration()
 {
     return this->counterGenerations;
 }
-
-
-
-/*
-void Population::PrintPopulation() {
-    int counter = 1;
-    std::cout << std::endl << "<<population>>" << std::endl;
-    for (auto each: routes) {
-        std::cout << "ruta " << counter << std::endl;
-        std::cout << "Fitness = " << each->TotalDist() << ": " << std::endl;
-        each->PrintCities();
-        std::cout << std::endl;
-        counter++;
-    }
-
-}
-void Population::PrintBestRoute() 
-{
-    std::cout << " PrintbestRoute dist = " << routes[std::get<0>(routesRanked[0])]->TotalDist() << std::endl << std::endl;
-    std::cout << "generations = " << this->counterGenerations << std::endl << std::endl;
-}
-
-void Population::PrintRutesRanked() {
-    for (auto each: routesRanked) {
-        std::cout << "rutesranked: " << routes[std::get<0>(each)]->TotalDist() << std::endl;
-    }
-}
-
-void Population::Reproduction(std::vector<std::tuple<int, double>> parents, int ruteSize) {
-    this->counterGenerations += 1;
-    std::vector<City *> parent1;
-    City * parent2;
-    Route *newRoute; 
-    std::vector<Route *> newGeneration;
-
-    int randInt;
-    int randParent1;
-    int randParent2;
-    srand(time(NULL));
-
-    bool check = false;
-
-    for (size_t i=0; i < routes.size(); i++) {
-        randInt = rand() % ruteSize/2;
-        randParent1 = rand() % parents.size();
-        randParent2 = rand() % parents.size();
-        newRoute = new Route();
-
-        parent1 = routes[std::get<0>(parents[randParent1])]->GetRangeCities(randInt, randInt + ruteSize/2 - 1);
-
-        for (size_t j=0; j < ruteSize; j++) {
-            parent2 = routes[std::get<0>(parents[randParent2])]->GetCity(j);
-            if (j == randInt) {
-                for (auto elem: parent1) {
-                    newRoute->AddCity(elem);
-                }
-            }
-            //en el siguiente codigo se asume que no hay ciudades repetidas, ver de asegurarse esto cuando se lee el archivo
-            for (auto each: parent1) {
-                if (*each == *parent2) {
-                    check = true;
-                    break;
-                }
-            } 
-            if (!check) {
-                newRoute->AddCity(parent2); 
-            }
-            check = false;
-        }
-        newGeneration.emplace_back(newRoute);
-    }
-    //aca habria que eliminar/delete a las rutas en rutes para liberar su espacio
-    //for (auto route: routes) {
-    //    delete route;
-    //}
-    this->routes = newGeneration;
-}
-
-void Population::WriterMax()
-{
-    std::fstream file;
-    file.open("RoutesDataMax.txt",std::fstream::in | std::fstream::out | std::fstream::app);
-    file << counterGenerations<<  ", "<<this->GetBestDist()<<"\n";
-    file.close();
-}
-void Population::WriterMin()
-{
-    std::fstream file;
-    file.open("RoutesDataMin.txt",std::fstream::in | std::fstream::out | std::fstream::app);
-    file << counterGenerations<<  ","<<this->GetWorstFitness()<<"\n";
-    file.close();
-}
-
-
-void Population::WriterProm()
-{
-     std::fstream file;
-    file.open("RoutesDataProm.txt",std::fstream::in | std::fstream::out | std::fstream::app);
-    file << counterGenerations<<  ","<<this->TotalFitness()/routes.size()<<"\n";
-    file.close();
-}
-*/

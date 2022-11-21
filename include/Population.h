@@ -15,6 +15,7 @@ class Population
 {
   private:
     std::vector<Route *> routes;
+    friend void testPopulation(Population* pop);
     std::vector<std::tuple<int, double>> routesRanked;
     int size;
     int counterGenerations;
