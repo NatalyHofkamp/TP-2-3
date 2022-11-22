@@ -23,7 +23,7 @@ void testPopulation(Population* p) {
     selected = p->Selection();
     assert((std::get<1>(selected[0])==std::get<1>(selected[2]))==true);
     p->Reproduction(selected, allCities.size());
-    assert(p->counterGenerations==2);
+    assert(p->counterGenerations==1);
     p->Mutation(0.02, allCities.size());
     p->SetRoutesRanked();
     assert(((std::get<1>(p->routesRanked[0]))<(std::get<1>(p->routesRanked[150])))==true);
