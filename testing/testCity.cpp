@@ -10,7 +10,7 @@ void testCity(void){
     assert(city1==city4==false);
     assert(city3->GetX()==0);
     assert(city2.GetY()==1);    
-    std::cout<<"[CITY TESTING]= OK"<<std::endl;
+    std::cout<<"[CITY TESTING]=OK"<<std::endl;
     delete city1;
     delete city3;
     delete city4;

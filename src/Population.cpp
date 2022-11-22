@@ -195,7 +195,7 @@ bool Population::CheckEvolution(size_t generations, double minChange)
 
 void Population::SetLastBestRoute()
 {
-    if (counterGenerations != 1) {
+    if (counterGenerations != 0) {
         delete this->lastBestRoute;
     }
     this->lastBestRoute = new Route(*routes[std::get<0>(routesRanked[0])]);

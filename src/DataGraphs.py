@@ -61,10 +61,12 @@ def PrintRoute(filename):
 
 
 
-def main(): 
+def main():
+    # Please, comment the function that you don't want to execute
+    # (the one that contains the graph that you don't want to display)
     PrintMax("RoutesDataMax.txt")
-    #PrintMin("RoutesDataMin.txt")
-    #PrintProm("RoutesDataProm.txt")
+    PrintMin("RoutesDataMin.txt")
+    PrintProm("RoutesDataProm.txt")
     PrintRoute("BestRouteGraph.txt")
 if __name__ == "__main__":
     main()

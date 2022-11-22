@@ -1,5 +1,5 @@
 #include "../testing/testHeader.h"
-#include "cityTest.cpp"
+#include "testCity.cpp"
 #include "testPopulation.cpp"
 #include "testRoute.cpp"
 

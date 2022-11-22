@@ -6,6 +6,6 @@
 #include <vector>
 #include "City.h"
 
-namespace reader { //ver esto del namespace
-    std::vector<City *> readCsv(std::string nameCsv);
-}
+
+std::vector<City *> readCsv(std::string nameCsv);
+

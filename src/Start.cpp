@@ -65,7 +65,7 @@ void StartAlgorithm(int argc, char *argv[])
 
     check = Parser(argc, argv, file, umbral, gen, out, best);  
     if (check) {
-        std::vector<City *> allCities = reader::readCsv(file);
+        std::vector<City *> allCities = readCsv(file);
         std::vector<Graph *> graphs;
         SetGraphs(out, graphs);  
         Generations(allCities, gen, umbral, graphs, best);

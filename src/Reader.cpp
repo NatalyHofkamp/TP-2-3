@@ -1,6 +1,6 @@
 #include "../include/Reader.h"
 
-std::vector<City *> reader::readCsv(std::string nameCsv)
+std::vector<City *> readCsv(std::string nameCsv)
  {
     std::string nombreArchivo = nameCsv;
     std::ifstream archivo(nombreArchivo.c_str());
